@@ -4,26 +4,26 @@ import Constants from './Constants';
 let ballServed = false;
 
 
-const Physics = (entities, { touches, time, dispatch, events }) => {
+const Physics = (entities, { touches, dispatch }) => {
   let engine = entities.physics.engine;
 
   Matter.Engine.update(engine, 1000 / 60);
 
+
+  //initial ball serve
   touches
     .filter((t) => t.type === 'end')
     .forEach((t) => {
       if (!ballServed) {
-        
-      Matter.Body.setVelocity(entities.TheBall.body, {
-        x: Math.floor(Math.random() * 7) - 3 * (Math.random() < 0.5 ? -1 : 1),
-        y: Math.floor(Math.random() * 7 + 3) * (Math.random() < 0.5 ? -1 : 1),
-      });
-      ballServed = true;
+        Matter.Body.setVelocity(entities.TheBall.body, {
+          x: Math.floor(Math.random() * 7) - 3 * (Math.random() < 0.5 ? -1 : 1),
+          y: Math.floor(Math.random() * 7 + 3) * (Math.random() < 0.5 ? -1 : 1),
+        });
+        ballServed = true;
       }
     })
-    
-  
-  //player score
+
+  //player score - collision detections
   Matter.Events.on(engine, 'collisionStart', (event) => {
     const pairs = event.pairs;
 
@@ -37,7 +37,6 @@ const Physics = (entities, { touches, time, dispatch, events }) => {
 
         Matter.Body.setVelocity(entities.TheBall.body, {
           x: Math.floor(Math.random() * 2) * 2 - 3,
-          // y: Math.floor(Math.random() * 4) - 8,
           y: 8,
         });
       }
@@ -59,7 +58,7 @@ const Physics = (entities, { touches, time, dispatch, events }) => {
     }
   });
 
-    // Move the paddles based on touch input
+  // Move the paddles based on touch input
   touches
     .filter((t) => t.type === 'move')
     .forEach((t) => {
@@ -76,9 +75,9 @@ const Physics = (entities, { touches, time, dispatch, events }) => {
       }
     });
 
- 
 
-  //GAME OVER
+
+  //GAME OVER - collision detection
   Matter.Events.on(engine, 'collisionStart', (event) => {
     const pairs = event.pairs;
 
@@ -87,8 +86,8 @@ const Physics = (entities, { touches, time, dispatch, events }) => {
       const bodyA = pair.bodyA;
       const bodyB = pair.bodyB;
 
-      if ((bodyA.label === 'TheBall' && bodyB.label === 'BottomBoundary') || 
-      (bodyA.label === 'TheBall' && bodyB.label === 'TopBoundary')) {
+      if ((bodyA.label === 'TheBall' && bodyB.label === 'BottomBoundary') ||
+        (bodyA.label === 'TheBall' && bodyB.label === 'TopBoundary')) {
         dispatch({ type: 'game_over' });
 
         Matter.Body.setPosition(entities.TheBall.body, {
@@ -107,7 +106,7 @@ const Physics = (entities, { touches, time, dispatch, events }) => {
           x: Constants.WINDOW_WIDTH / 2,
           y: Constants.WINDOW_HEIGHT / 24,
         });
-        
+
         ballServed = false;
       }
     }

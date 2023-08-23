@@ -37,9 +37,7 @@ export default (world, color, pos, size, extraOptions) => {
     }
   );
 
-
   Matter.World.add(world, TheBoundary);
-
   return {
     body: TheBoundary,
     color,

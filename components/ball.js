@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 
 const Ball = (props) => {
   const width = props.size.width;
@@ -17,9 +17,7 @@ const Ball = (props) => {
         height: height,
         borderRadius: 20 / 2,
         backgroundColor: props.color,
-        // backgroundSize: 'auto',
       }}>
-    
     </View>
   );
 };
@@ -29,17 +27,16 @@ export default (world, color, pos, size, extraOptions) => {
     pos.x,
     pos.y,
     15,
-    { 
-      label: extraOptions.label, 
+    {
+      label: extraOptions.label,
       frictionAir: 0,
       friction: 0,
-      frictionStatic: 0,  
+      frictionStatic: 0,
       restitution: 1,
     }
   );
 
   Matter.World.add(world, TheBall);
-
   return {
     body: TheBall,
     color,

@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View } from "react-native";
 import Matter from "matter-js";
 
 const Enemy = (props) => {
@@ -7,7 +7,7 @@ const Enemy = (props) => {
   const xPos = props.body.position.x - width / 2;
   const yPos = props.body.position.y - height / 2;
 
-  
+
   return (
     <View
       style={{
@@ -18,7 +18,7 @@ const Enemy = (props) => {
         backgroundColor: props.color,
         position: "absolute",
       }}>
-      </View>
+    </View>
   );
 };
 

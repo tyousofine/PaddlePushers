@@ -7,7 +7,7 @@ const Player = (props) => {
   const xPos = props.body.position.x - width / 2;
   const yPos = props.body.position.y - height / 2;
 
-  
+
   return (
     <View
       style={{
@@ -18,7 +18,7 @@ const Player = (props) => {
         backgroundColor: props.color,
         position: "absolute",
       }}>
-      </View>
+    </View>
   );
 };
 
@@ -30,11 +30,7 @@ export default (world, color, pos, size, extraOptions) => {
     size.height,
     {
       label: extraOptions.label,
-      // friction: 0,
-      // frictionAir: 0,
-      // frictionStatic: 0,
       restitution: 1,
-      // mass: 500,
       isStatic: true,
     }
   );

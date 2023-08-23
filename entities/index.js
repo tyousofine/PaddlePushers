@@ -5,9 +5,7 @@ import enemy from '../components/enemy';
 import Matter from 'matter-js';
 import Constants from '../Constants';
 
-
-
-export default (gameWorld) => {
+export default () => {
   let engine = Matter.Engine.create({ enableSleeping: false });
   engine.constraintIterations = 10;
   engine.positionIterations = 10;
@@ -20,16 +18,12 @@ export default (gameWorld) => {
 
   return {
     physics: { engine, world },
-
     TheBall: ball(
       world,
       'white',
       { x: Constants.WINDOW_WIDTH / 2, y: Constants.WINDOW_HEIGHT / 3 },
       { height: 20, width: 20 },
-      {
-        label: 'TheBall',
-
-      }
+      { label: 'TheBall', }
     ),
 
     ThePlayer: player(
@@ -37,9 +31,7 @@ export default (gameWorld) => {
       'red',
       { x: Constants.WINDOW_WIDTH / 2, y: Constants.WINDOW_HEIGHT / 1.04 },
       { width: 80, height: 20 },
-      {
-        label: 'Player',
-      }
+      { label: 'Player', }
     ),
 
     TheEnemy: enemy(
@@ -52,7 +44,6 @@ export default (gameWorld) => {
         isStatic: true,
       }
     ),
-
 
     LeftBoundary: boundary(
       world,
@@ -67,11 +58,7 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH, y: Constants.WINDOW_HEIGHT / 2 },
       { height: Constants.WINDOW_HEIGHT, width: 10 },
-      {
-        label: 'RightBoundary',
-        isStatic: true,
-        restitution: 1
-      }
+      { label: 'RightBoundary', }
     ),
 
     TopBoundary: boundary(
@@ -79,11 +66,7 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH / 2, y: 0 },
       { height: 5, width: Constants.WINDOW_WIDTH },
-      {
-        label: 'TopBoundary',
-        isStatic: true,
-        restitution: 1
-      }
+      { label: 'TopBoundary', }
     ),
 
     BottomBoundary: boundary(
@@ -91,11 +74,7 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH / 2, y: Constants.WINDOW_HEIGHT },
       { height: 5, width: Constants.WINDOW_WIDTH },
-      {
-        label: 'BottomBoundary',
-        isStatic: true,
-        restitution: 1
-      }
+      { label: 'BottomBoundary', }
     ),
   };
 };

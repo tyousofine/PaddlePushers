@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { View, Image, StyleSheet, SafeAreaView, TouchableOpacity, Text } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import physics from './physics';
 import { GameEngine } from 'react-native-game-engine';
-import { View, Image, StyleSheet, SafeAreaView, TouchableOpacity, Text } from 'react-native';
 import entities from './entities/index';
 import Constants from './Constants';
 import Images from './Images';
@@ -10,11 +10,9 @@ import Net from './components/net';
 
 export default function App() {
   const [gameEngine, setGameEngine] = useState(null);
-
   const [running, setRunning] = useState(false);
   const [enemyScore, setEnemyScore] = useState(0);
   const [playerScore, setPlayerScore] = useState(0);
-
   const [collisionOccurred, setCollisionOccurred] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
@@ -35,7 +33,6 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <GameEngine
         ref={(ref) => {
           setGameEngine(ref);
@@ -60,16 +57,13 @@ export default function App() {
           }
         }}>
         <StatusBar style="auto" hidden={true} />
-
       </GameEngine>
 
       <View style={styles.scoreContainer}>
         <Text style={styles.scoreText}>P2 {enemyScore}</Text>
         <Net />
         <Text style={styles.scoreText}>P1 {playerScore}</Text>
-
       </View>
-
 
       {!running ? (
         <View style={styles.welcomeScreenContainer}>
@@ -86,7 +80,6 @@ export default function App() {
             }}>
             <Text style={styles.startButtonText}>START GAME</Text>
           </TouchableOpacity>
-
 
         </View>
       ) : null}
@@ -120,7 +113,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#46A07E',
-
   },
 
   titleImg: {
@@ -150,7 +142,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
 
-
   startButton: {
     left: 0,
     top: 350,
@@ -161,7 +152,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     padding: 25,
     alignItems: 'center',
-
   },
 
   startButtonText: {
@@ -169,6 +159,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+
   gameButton: {
     left: 0,
     top: Constants.WINDOW_WIDTH / 1.5,
@@ -179,7 +170,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     padding: 30,
     alignItems: 'center',
-
   },
 
   gameovertButtonText: {
@@ -190,7 +180,6 @@ const styles = StyleSheet.create({
   finalScoreContainer: {
     display: 'flex',
     alignItems: 'center',
-
   },
 
   finalScore: {
@@ -200,7 +189,6 @@ const styles = StyleSheet.create({
   },
 
   scoreContainer: {
-
     width: '100%',
     paddingHorizontal: 10
   },
@@ -210,11 +198,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
-
-  // net: {
-  //   fontSize: 20,
-  //   color: 'white'
-
-  // },
-
 });
