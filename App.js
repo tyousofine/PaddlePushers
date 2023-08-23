@@ -6,6 +6,7 @@ import { View, Image, StyleSheet, SafeAreaView, TouchableOpacity, Text } from 'r
 import entities from './entities/index';
 import Constants from './Constants';
 import Images from './Images';
+import Net from './components/net';
 
 export default function App() {
   const [gameEngine, setGameEngine] = useState(null);
@@ -64,7 +65,7 @@ export default function App() {
 
       <View style={styles.scoreContainer}>
         <Text style={styles.scoreText}>P2 {enemyScore}</Text>
-        {/* <Text style={styles.net}>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</Text> */}
+        <Net />
         <Text style={styles.scoreText}>P1 {playerScore}</Text>
 
       </View>
@@ -215,8 +216,5 @@ const styles = StyleSheet.create({
   //   color: 'white'
 
   // },
-
-
-
 
 });

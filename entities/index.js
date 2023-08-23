@@ -6,6 +6,7 @@ import Matter from 'matter-js';
 import Constants from '../Constants';
 
 
+
 export default (gameWorld) => {
   let engine = Matter.Engine.create({ enableSleeping: false });
   engine.constraintIterations = 10;
@@ -66,7 +67,11 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH, y: Constants.WINDOW_HEIGHT / 2 },
       { height: Constants.WINDOW_HEIGHT, width: 10 },
-      { label: 'RightBoundary' }
+      {
+        label: 'RightBoundary',
+        isStatic: true,
+        restitution: 1
+      }
     ),
 
     TopBoundary: boundary(
@@ -74,7 +79,11 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH / 2, y: 0 },
       { height: 5, width: Constants.WINDOW_WIDTH },
-      { label: 'TopBoundary' }
+      {
+        label: 'TopBoundary',
+        isStatic: true,
+        restitution: 1
+      }
     ),
 
     BottomBoundary: boundary(
@@ -82,9 +91,11 @@ export default (gameWorld) => {
       'white',
       { x: Constants.WINDOW_WIDTH / 2, y: Constants.WINDOW_HEIGHT },
       { height: 5, width: Constants.WINDOW_WIDTH },
-      { label: 'BottomBoundary' }
+      {
+        label: 'BottomBoundary',
+        isStatic: true,
+        restitution: 1
+      }
     ),
-
-
   };
 };
